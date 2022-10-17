@@ -1,26 +1,9 @@
-/**********************************************************************************************************************
 
- *  FILE DESCRIPTION
- *  -------------------------------------------------------------------------------------------------------------------
- *         File:  MemoryMap.h
- *       Module:  MemoryMap
- *
- *  Description:  header file for TM4C123GH6PM Registers definition
- *
- *********************************************************************************************************************/
 #ifndef MEMORYMAP_H
 #define MEMORYMAP_H
 
-/**********************************************************************************************************************
- * INCLUDES
- *********************************************************************************************************************/
 #include "PlatformTypes.h"
 
-/**********************************************************************************************************************
- *  GLOBAL DATA TYPES AND STRUCTURES
- *********************************************************************************************************************/
-
-// type of each register
 #define RW__ volatile
 #define RO__ volatile
 #define WO__ volatile
@@ -28,8 +11,6 @@
 #define RW1C__ volatile
 #define W1C__ volatile
 
-//___________________________________
-// NVIC registers
 typedef struct
 {
     RW__ uint32 EN[5];
@@ -67,8 +48,7 @@ typedef struct
     RW__ uint32 MMADDR;
     RW__ uint32 FAULTADDR;
 } SCB_Type;
-//___________________________________
-// GPIO registers
+
 typedef struct
 {
     RW__ uint32 GPIODATA[256];
@@ -111,9 +91,6 @@ typedef struct
     RO__ uint32 GPIOPCellID3;
 } GPIO_Type;
 
-//___________________________________
-// SysCtrl registers
-// ONLY required REGISTERES IS IMPLEMENTED
 typedef struct
 {
     vuint32 reserved[383];
@@ -159,8 +136,7 @@ typedef struct
     RO__ uint32 PREEPROM;
     RO__ uint32 PRWTIMER;
 } SysCTRL_Type;
-//___________________________________
-// General Prpose Timers registers
+
 typedef struct
 {
     RW__ uint32 GPTMCFG;
@@ -194,15 +170,11 @@ typedef struct
     RO__ uint32 GPTMPP;
 } Gpt_Type;
 
-/**********************************************************************************************************************
- *  GLOBAL CONSTANT MACROS
- *********************************************************************************************************************/
-// private peripherals addresses
+
 #define CORTEXM4_CORE_PERIPHERALS_BASE 0xE000E000u
 #define NVIC_OFFSET 0x100u
 #define SCB_OFFSET 0xD00u
 
-// GPIO APB Base addresses
 #define GPIOA_BASE 0x40004000u
 #define GPIOB_BASE 0x40005000u
 #define GPIOC_BASE 0x40006000u
@@ -210,10 +182,8 @@ typedef struct
 #define GPIOE_BASE 0x40024000u
 #define GPIOF_BASE 0x40025000u
 
-// SysCtrl Base addresses
 #define SysCtrl_BASE 0x400FE000u
 
-// GPT Base addresses
 #define Timer0_BASE 0x40030000u
 #define Timer1_BASE 0x40031000u
 #define Timer2_BASE 0x40032000u
@@ -244,10 +214,8 @@ typedef struct
 
 #define GPIO(GPIO_BASE) ((GPIO_Type *)(GPIO_BASE))
 
-//System Control
 #define SysCtrl ((SysCTRL_Type *)(SysCtrl_BASE))
 
-//General Purpose Timers
 #define Timer0 ((Gpt_Type *)(Timer0_BASE))
 #define Timer1 ((Gpt_Type *)(Timer1_BASE))
 #define Timer2 ((Gpt_Type *)(Timer2_BASE))
@@ -266,8 +234,4 @@ typedef struct
 
 #define WTimer(WTIMER_BASE) ((Gpt_Type *)(WTIMER_BASE))
 
-#endif /* MEMORYMAP_H */
-
-/**********************************************************************************************************************
- *  END OF FILE: MemoryMap.h
- *********************************************************************************************************************/
+#endif 
